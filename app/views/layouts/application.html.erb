@@ -10,6 +10,54 @@
   </head>
 
   <body>
+    <header>
+      <nav class="navbar navbar-dark bg-dark">
+          <span><%= link_to "Bookers", root_path %></span>
+        <div>
+
+            <ul class="nav justify-content-end">
+              <% if user_signed_in? %>
+              <li class="nav-item">
+                <i class="fas fa-home"><%= link_to "Home", user_path(current_user) %></i>
+              </li>
+              <li class="nav-item">
+                <i class="fas fa-users"><%= link_to "Users", users_path %></i>
+              </li>
+              <li class="nav-item">
+                <i class="fas fa-book-open"><%= link_to "Books", books_path %></i>
+              </li>
+              <li class="nav-item">
+                <i class="fas fa-sign-out-alt"><%= link_to "Log out", destroy_user_session_path, method: :delete %></i>
+              </li>
+              <% else %>
+              <li class="nav-item">
+                <i class="fas fa-home"><%= link_to "Home", root_path %></i>
+              </li>
+              <li class="nav-item">
+                <i class="fas fa-link"><%= link_to "About", home_about_path %></i>
+              </li>
+              <li class="nav-item">
+                <i class="fas fa-user-plus"><%= link_to "Sign up",  new_user_registration_path %></i>
+              </li>
+              <li class="nav-item">
+                <i class="fas fa-sign-in-alt"><%= link_to "Log in", new_user_session_path %></i>
+              </li>
+              <% end %>
+            </ul>
+
+        </div>
+      </nav>
+    </header>
+    <%= render 'layouts/notifications' %>
     <%= yield %>
+    <footer>
+      <div class="container mt-5">
+        <div class="row">
+          <div class="mx-auto">
+           <p>CopyRight Infratop.inc</p>
+          </div>
+        </div>
+      </div>
+    </footer>
   </body>
 </html>
